@@ -46,6 +46,7 @@ Ticket :: Ticket (int nums [][SIZE]) : _numLines (0)
 }
 
 int Ticket :: checkBingo (int num) {
+	if (_numToIndex .find (num) == _numToIndex .end ()) return _numLines;
 	std::pair <int, int> &index = _numToIndex [num];
 	int y = index .first;
 	int x = index .second;
