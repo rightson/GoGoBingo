@@ -38,9 +38,7 @@ Ticket :: Ticket (int nums [][SIZE]) : _numLines (0)
 	for (int y = 0; y < SIZE; y ++) {
 		for (int x = 0; x < SIZE; x ++) {
 			_numToIndex .insert (std::make_pair (nums [y] [x], std::make_pair (y, x)));
-			//printf ("%d ", nums [y] [x]);
 		}
-		//printf ("\n");
 	}
 }
 
@@ -80,8 +78,6 @@ int Ticket :: checkBingo (int num) {
 		if (diagonal) _numLines ++;
 	}
 
-	printOpened ();
-
 	return _numLines;
 }
 
@@ -108,9 +104,9 @@ int main () {
 	while (cin >> num) {
 		for (size_t i = 0; i < tickets .size (); i ++) {
 			int numLines = tickets [i] .checkBingo (num);
-			printf ("[%d] %d lines\n", i + 1, numLines);
 			if (numLines > 0) {
 				printf ("[%d] %d lines\n", i + 1, numLines);
+				tickets [i] .printOpened ();
 			}
 		}
 	}
