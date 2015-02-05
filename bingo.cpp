@@ -19,7 +19,6 @@ int TICKETS [][SIZE][SIZE] = {
 	 {21, 22, 23, 24, 25}}
 };
 
-
 class Ticket {
 public:
 	Ticket (int nums [][SIZE]);
