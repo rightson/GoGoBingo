@@ -143,10 +143,6 @@ int main () {
 
 	vector <Ticket> tickets;
     readTickets("input.txt", tickets);
-	//for (int i = 0; i < NUM_TICKETS; i ++) {
-	//	Ticket ticket (TICKETS [i]);
-	//	tickets .push_back (ticket);
-	//}
 
 	int num;
     map<string, int> bingo;
