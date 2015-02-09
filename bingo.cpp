@@ -114,7 +114,7 @@ void readTickets(string filename, vector <Ticket> &tickets) {
     ifstream myfile (filename.c_str());
     string line;
     if (!myfile.is_open()) {
-        throw "cannot read ticket.txt file";
+        throw "cannot read input file";
     }
     string key, dummy;
     int num;
@@ -123,7 +123,6 @@ void readTickets(string filename, vector <Ticket> &tickets) {
     int y = 0;
     while (myfile.peek() != EOF) {
         myfile >> key >> dummy;
-        cout << key << endl;
         x = 0;
         for (int i=0; i<SIZE*SIZE; i++) {
             myfile >> num;  
@@ -135,6 +134,7 @@ void readTickets(string filename, vector <Ticket> &tickets) {
                 x++;
             }
         }
+        cout << "Read Card # " << key << endl;
         tickets.push_back(Ticket(key, nums));
     }
 }
@@ -147,28 +147,30 @@ int main () {
 	int num;
     map<string, int> bingo;
     set<int> opening;
+    cout << "=> ";
 	while (cin >> num) {
         opening.insert(num);
 		for (size_t i = 0; i < tickets .size (); i ++) {
 			int numLines = tickets [i] .checkBingo (num);
 			if (numLines > 0) {
-				printf ("No. %s [%lu] %d lines\n", tickets[i].name.c_str(), i + 1, numLines);
+				printf ("  No. %s [%lu] %d lines\n", tickets[i].name.c_str(), i + 1, numLines);
 				tickets [i] .printOpened ();
 			}
 			if (numLines > 0) {
                 bingo[tickets[i].name] = numLines;
 			}
 		}
-        printf("Match\n");
+        printf("Bingo!! \n");
         for (map<string, int>::iterator it = bingo.begin(); it != bingo.end(); ++it) {
-		    printf ("Card=%s line=%d", it->first.c_str(), it->second);
+		    printf ("Card=#%s Lines=%d", it->first.c_str(), it->second);
             printf("\n");
         }
-        printf("Opening: ");
+        printf("  Opening: ");
         for (set<int>::iterator it = opening.begin(); it != opening.end(); ++it) {
 		    printf ("%d ", *it);
         }
         printf("\n");
+        cout << "==> ";
 	}
 
 	return 0;
